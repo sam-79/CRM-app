@@ -16,6 +16,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import { Grid, Paper, FormControl, Select, InputLabel, MenuItem } from "@mui/material"
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ContactsIcon from "@mui/icons-material/Contacts";
@@ -23,6 +24,12 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import AssessmentOutlinedIcon from "@mui/icons-material/AssessmentOutlined";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
+
+
+//elements
+import ContactDetails from "./Contacts_Drawer/Contact_Details";
+import ContactSource from "./Contacts_Drawer/ContactSource";
+import { FormHeading } from "./ModifiedElements";
 
 const drawerWidth = 240;
 
@@ -115,7 +122,7 @@ export default function CRMHeader() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{backgroundColor:"#eee"}}>
+      <AppBar position="fixed" open={open} sx={{ backgroundColor: "#eee" }}>
         <Toolbar>
           <IconButton
             aria-label="open drawer"
@@ -133,7 +140,7 @@ export default function CRMHeader() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} sx={{backgroundColor:"#eee"}}>
+      <Drawer variant="permanent" open={open} sx={{ backgroundColor: "#eee" }}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
@@ -151,14 +158,17 @@ export default function CRMHeader() {
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
-                  px: 2.5
+                  px: 2.5,
+                  color: "#d800ff"
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    color: "#d800ff"
+
                   }}
                 >
                   {item.icon}
@@ -172,9 +182,10 @@ export default function CRMHeader() {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flex: 2, flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>
+
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
           dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -188,7 +199,50 @@ export default function CRMHeader() {
           vivamus at augue. At augue eget arcu dictum varius duis at consectetur
           lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
           faucibus et molestie ac.
-        </Typography>
+        </Typography> */}
+
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+
+          <Grid item xs={9}>
+
+            <ContactDetails />
+          </Grid>
+          <Grid item xs={3}>
+
+            <Paper>
+
+              <FormHeading>
+                CAMPAIGNS
+              </FormHeading>
+
+              <Divider />
+
+              <Box sx={{padding:5}}>
+                <FormControl fullWidth >
+                  <InputLabel id="select-label">Select Campaigns</InputLabel>
+                  <Select
+                    labelId="select-label"
+                    id="select"
+                  >
+                    {/* <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem> */}
+                  </Select>
+                </FormControl>
+              </Box>
+
+            </Paper>
+
+            <ContactSource />
+          </Grid>
+
+
+        </Grid>
+
+
+
+
+
       </Box>
     </Box>
   );
